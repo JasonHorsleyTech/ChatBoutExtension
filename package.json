@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@fingerprintjs/fingerprintjs": "^3.0.6",
-    "axios": "^0.20.0",
+    "axios": "^0.21.1",
     "core-js": "^3.6.5",
     "hasha": "^5.2.2",
     "lodash": "^4.17.21",
