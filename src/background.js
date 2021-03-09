@@ -28,7 +28,7 @@ browser.runtime.onInstalled.addListener(() => {
 
   browser.webNavigation.onCompleted.addListener(function ({ parentFrameId, url }) {
     if (parentFrameId === -1) {
-      store.dispatch('updateLocation', url)
+      store.dispatch('travel', url)
     }
   })
 
