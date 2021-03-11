@@ -4,7 +4,11 @@ module.exports = {
   purge: [],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {},
+    extend: {
+      fontSize: {
+        '2xs': ['0.65rem', 'line-height: 0.75rem'],
+      }
+    },
   },
   variants: {
     extend: {
