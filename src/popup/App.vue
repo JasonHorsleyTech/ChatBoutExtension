@@ -79,7 +79,7 @@ export default {
          * @return {Bool}
          */
         isExtension() {
-            return typeof browser === "undefined";
+            return true;
         },
 
         selectedPanel() {
