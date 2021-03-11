@@ -30,7 +30,7 @@
         <privacy-policy-joke
             v-if="showPrivacyJoke"
             class="absolute inset-0 bg-gray-100"
-            @done="showPrivacyJoke = false"
+            @close="showPrivacyJoke = false"
         />
     </div>
 </template>

@@ -1,12 +1,7 @@
 <template>
     <div class="py-4">
         <div class="w-full">
-            <div
-                @click.prevent="$emit('done')"
-                class="absolute ml-8 text-xl w-7 h-7 border bg-gray-200 text-gray-700 rounded-full flex items-center justify-center cursor-pointer"
-            >
-                <span>X</span>
-            </div>
+            <close-button class="absolute w-14 h-14 top-0" @click="$emit('close')" />
             <h2 class="text-2xl text-center mb-10">
                 HOWDY fellow
                 <a
@@ -96,7 +91,12 @@
 </template>
 
 <script>
+import CloseButton from "@/components/CloseButton.vue";
 export default {
+    components: {
+        CloseButton,
+    },
+    
     data() {
         return {
             /**
