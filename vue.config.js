@@ -1,7 +1,7 @@
 module.exports = {
   productionSourceMap: true,
   devServer: {
-    host: 'popup.extension.test',
+    host: 'popup.chat-bout-api.test',
   },
 
   pages: {

@@ -55,21 +55,20 @@
 
 <script>
 import TextAreaInput from "@/components/TextAreaInput.vue";
-import { mapActions } from 'vuex';
+import { mapActions } from "vuex";
 
 export default {
-    mounted() {
-        this.travel({
-            url: window.location.href,
-        })
-    },
-
     components: {
         TextAreaInput,
     },
 
     methods: {
-        ...mapActions('traveler', ['travel'])
+        ...mapActions("traveler", ["travel"]),
+        handleSubmit() {
+            this.travel({
+                url: window.location.href,
+            });
+        },
     },
 
     computed: {
