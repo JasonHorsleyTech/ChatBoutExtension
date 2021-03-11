@@ -3,7 +3,8 @@
         :value="value"
         :placeholder="placeholder"
         :name="name"
-        input-type="input"
+        :limit="limit"
+        input-type="textarea"
         @input="proxyInput"
     />
 </template>
@@ -23,6 +24,7 @@ export default {
         value: { required: true },
         placeholder: { required: true },
         name: { required: true },
+        limit: { required: false, default: false },
     },
 
     methods: {
