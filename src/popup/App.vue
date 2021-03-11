@@ -10,35 +10,10 @@
 
         <template v-else>
             <div class="flex flex-nowrap align-center shadow">
-                <div
-                    class="flex relative cursor-pointer w-14 group"
-                    @click.prevent="setPanel('options')"
-                >
-                    <div
-                        class="transition absolute flex inset-0 group-hover:px-0.5"
-                    >
-                        <div
-                            class="transition transform justify-self-center self-center bg-gray-500 group-hover:bg-gray-400 block h-1 w-4/5 mx-auto"
-                            :class="[
-                                panel === 'options'
-                                    ? 'rotate-45'
-                                    : 'rotate-0 mt-4',
-                            ]"
-                        />
-                    </div>
-                    <div
-                        class="transition absolute flex inset-0 group-hover:px-0.5"
-                    >
-                        <div
-                            class="transition transform justify-self-center self-center bg-gray-500 group-hover:bg-gray-400 block h-1 w-4/5 mx-auto"
-                            :class="[
-                                panel === 'options'
-                                    ? '-rotate-45'
-                                    : 'rotate-0 -mt-4',
-                            ]"
-                        />
-                    </div>
-                </div>
+                <menu-toggle
+                    @click="setPanel('options')"
+                    :is-close="panel === 'options'"
+                />
                 <div
                     class="flex-grow flex flex-nowrap align-center transition relative"
                 >
@@ -75,11 +50,17 @@
 <script>
 import { mapActions, mapGetters, mapState } from "vuex";
 
+import MenuToggle from "@/components/MenuToggle.vue";
+
 import OptionsPanel from "@/panels/options/Index.vue";
 import MarksPanel from "@/panels/marks/Index.vue";
 import TravelersPanel from "@/panels/travelers/Index.vue";
 
 export default {
+    components: {
+        MenuToggle,
+    },
+
     mounted() {
         console.clear();
         if (!this.isRegistered) {
@@ -103,10 +84,10 @@ export default {
 
         selectedPanel() {
             return {
-                "options": OptionsPanel,
-                "marks": MarksPanel,
-                "travelers": TravelersPanel
-            }[this.panel]
+                options: OptionsPanel,
+                marks: MarksPanel,
+                travelers: TravelersPanel,
+            }[this.panel];
         },
     },
 
@@ -119,20 +100,25 @@ export default {
 
         setPanel(newPanel) {
             // Toggling options panel takes you back to whatever was previously selected
-            if (newPanel === 'options') {
-                if (this.panel === 'options') {
-                    this.panel = localStorage.getItem('popup_app_previous_panel')
-                    return localStorage.removeItem('popup_app_previous_panel')
+            if (newPanel === "options") {
+                if (this.panel === "options") {
+                    this.panel = localStorage.getItem(
+                        "popup_app_previous_panel"
+                    );
+                    return localStorage.removeItem("popup_app_previous_panel");
                 } else {
-                    localStorage.setItem('popup_app_previous_panel', this.panel)
+                    localStorage.setItem(
+                        "popup_app_previous_panel",
+                        this.panel
+                    );
                 }
             }
 
             if (this.panel === newPanel) {
-                return
+                return;
             }
 
-            this.panel = newPanel
+            this.panel = newPanel;
         },
     },
 
