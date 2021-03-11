@@ -18,6 +18,11 @@ export default {
     state: {
         traveler_print: null,
 
+        /**
+         * 
+         */
+        location: {},
+
         traveler_uuid: null,
 
         traveler_name: null,
@@ -32,6 +37,10 @@ export default {
          */
         setPrint(state, print = null) {
             state.traveler_print = print
+        },
+
+        setLocation(state, locationData = {}) {
+            state.location = locationData
         },
 
         setTravelerUuid(state, uuid = null) {
@@ -54,7 +63,7 @@ export default {
         },
 
         async travel({ commit }, { url }) {
-            let { data } = await Axios.post(`/location`, { url })
+            let { data } = await Axios.post(`/location`, { location_key: url })
 
             commit('setLocation', data)
         },
