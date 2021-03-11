@@ -10,6 +10,7 @@ export function prependRequestsWithDefaults() {
         if (request.url[0] === '/') {
             request.url = PATH + request.url
         }
+        request.withCredentials = true
 
         return request;
     }
