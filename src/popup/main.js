@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import App from '@/popup/App.vue'
+import Loader from '@/popup/Loader.vue'
 import '@/css/index.css'
 import store from '@/store';
 
@@ -12,5 +12,5 @@ new Vue({
   el: '#app',
   store,
 
-  render: h => h(App)
+  render: h => h(Loader)
 })
