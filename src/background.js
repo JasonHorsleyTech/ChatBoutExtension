@@ -26,11 +26,14 @@ browser.runtime.onInstalled.addListener(() => {
   //   });
   // });
 
-  browser.webNavigation.onCompleted.addListener(function ({ parentFrameId, url }) {
+  let mutateUrl = ({ parentFrameId, url }) => {
     if (parentFrameId === -1) {
-      store.dispatch('travel', url)
+      store.commit('setLocalUrl', url)
     }
-  })
+  }
+
+  browser.webNavigation.onCompleted.addListener(mutateUrl)
+  browser.webNavigation.onHistoryStateUpdated.addListener(mutateUrl)
 
   browser.storage.local.clear()
 })
