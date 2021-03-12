@@ -1,97 +1,65 @@
 <template>
     <div class="relative m-6">
-        <form
-            @submit.prevent="handleSubmit"
-            class="p-6 border rounded-lg shadow bg-gray-200 grid gap-2 text-gray-700"
+        <div
+            @click="openIfClosed"
+            class="w-full flex flex-row items-stretch rounded-lg shadow-lg bg-gray-200 overflow-hidden"
+            :class="{ 'cursor-pointer hover:opacity-75': closed }"
         >
-            <h2 class="text-xl mb-4">
-                It's public. Don't say anything you wouldn't put in a bathroom
-                stall.
-            </h2>
-            <text-area-input
-                class="col col-span-1"
-                placeholder="Leave your mark"
-                name="local_mark"
-                v-model="local_mark"
-                limit="256"
-            />
-
-            <input
-                type="checkbox"
-                id="use-root-url"
-                class="hidden"
-                v-model="use_root_url"
-            />
-            <label for="use-root-url" class="cursor-pointer">
-                <div
-                    class="bg-gray-300 border border-2 border-gray-400 inline-flex rounded-md"
+            <div
+                @click="closeIfOpened"
+                class="bg-blue-600 border border-blue-600 w-12 transition"
+                :class="[closed ? '' : 'hover:bg-blue-700 cursor-pointer']"
+            ></div>
+            <div
+                class="py-3 px-4 border rounded-tr-lg rounded-br-lg transition"
+                :class="[closed ? 'border-gray-200' : 'border-blue-600']"
+            >
+                <h2
+                    class="text-3xl tracking-wider transition"
+                    :class="{ '-mt-14 mb-2': !closed }"
                 >
-                    <div
-                        class="bg-green-700 w-2 h-2 m-0.5 rounded-full transition"
-                        :class="{ 'opacity-0': use_root_url }"
-                    />
-                </div>
-                <p class="inline ml-1 align-middle">
-                    Use {{ use_root_url ? `root URL` : `full URL` }} ({{
-                        use_root_url ? rootUrl : fullUrl
-                    }})
-                </p>
-                <p class="block ml-6 text-sm mt-2">
-                    All URLs will be hashed before getting sent across the wire.
-                    No one will be able to see where you went unless they visit
-                    the same page.
-                </p>
-            </label>
-
-            <input
-                type="submit"
-                class="inline-block ml-auto px-4 py-2 rounded-lg bg-green-500 text-white font-semibold tracking-wider cursor-pointer transition shadow-md hover:shadow-lg"
-                :value="submitText"
-                :disabled="submitting"
-            />
-        </form>
+                    Make a mark
+                </h2>
+                <make-mark
+                    class="transition"
+                    :class="[closed ? 'h-0' : 'h-72']"
+                />
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
-import TextAreaInput from "@/components/TextAreaInput.vue";
-import { mapActions } from "vuex";
+import MakeMark from "@/panels/marks/MakeMark.vue";
 
 export default {
     components: {
-        TextAreaInput,
+        MakeMark,
     },
 
     methods: {
-        ...mapActions("traveler", ["travel"]),
-        handleSubmit() {
-            this.travel({
-                url: window.location.href,
-            });
+        openIfClosed() {
+            console.log("openIfClosed");
+            if (this.closed) {
+                this.closed = false;
+            }
+        },
+
+        closeIfOpened(e) {
+            console.log(e);
+            console.log("closeIfOpened");
+            if (!this.closed) {
+                this.closed = true;
+                e.stopPropagation();
+            }
         },
     },
 
-    computed: {
-        submitText() {
-            return this.submitting ? "please wait" : "Submit";
-        },
-
-        rootUrl() {
-            return "google.com";
-        },
-
-        fullUrl() {
-            return "google.com/your porn";
-        },
-    },
+    computed: {},
 
     data() {
         return {
-            submitting: false,
-
-            local_mark: "",
-
-            use_root_url: false,
+            closed: true,
         };
     },
 };
