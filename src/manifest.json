@@ -7,7 +7,10 @@
   "permissions": [
     "storage",
     "webNavigation",
-    "background"
+    "background",
+    "cookies",
+    "https://chat-bout-api.test/api"
+
   ],
   "icons": {
     "16": "icons/16.png",
