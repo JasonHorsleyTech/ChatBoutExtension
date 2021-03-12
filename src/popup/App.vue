@@ -62,15 +62,14 @@ export default {
     },
 
     mounted() {
-        console.clear();
         if (!this.isRegistered) {
             this.registerTraveler();
         }
     },
 
     computed: {
-        ...mapState("traveler", ["traveler_uuid"]),
-        ...mapGetters("traveler", ["isRegistered"]),
+        ...mapState(["traveler_uuid"]),
+        ...mapGetters(["isRegistered"]),
 
         /**
          * Are we previewing from npm run popup (browser based so we get HMR)
@@ -92,11 +91,7 @@ export default {
     },
 
     methods: {
-        ...mapActions("traveler", ["registerTraveler"]),
-
-        async patch() {
-            await this.updateLocation({ url: "google.com" });
-        },
+        ...mapActions(["registerTraveler"]),
 
         setPanel(newPanel) {
             // Toggling options panel takes you back to whatever was previously selected

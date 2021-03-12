@@ -48,7 +48,7 @@ export default {
     },
 
     methods: {
-        ...mapActions("traveler", ["updateTravelerName"]),
+        ...mapActions(["updateTravelerName"]),
 
         async handleSubmit() {
             this.submitting = true;
@@ -61,7 +61,7 @@ export default {
     },
 
     computed: {
-        ...mapState("traveler", ["traveler_name"]),
+        ...mapState(["traveler_name"]),
 
         submitText() {
             return this.submitting
