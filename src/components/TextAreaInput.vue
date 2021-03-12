@@ -4,6 +4,7 @@
         :placeholder="placeholder"
         :name="name"
         :limit="limit"
+        :readonly="readonly"
         input-type="textarea"
         @input="proxyInput"
     />
@@ -24,6 +25,7 @@ export default {
         value: { required: true },
         placeholder: { required: true },
         name: { required: true },
+        readonly: { required: false },
         limit: { required: false, default: false },
     },
 

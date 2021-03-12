@@ -21,6 +21,7 @@
             type="text"
             autocomplete="off"
             rows="6"
+            :readonly="readonly"
         />
 
         <p
@@ -36,6 +37,10 @@
 <style lang="scss" scoped>
 .the-input-element {
     @apply pt-4 pb-2 px-4 outline-none border bg-white text-black border-gray-600 rounded w-full;
+
+    &[readonly] {
+        @apply text-gray-500;
+    }
 }
 </style>
 
@@ -93,6 +98,16 @@ export default {
             required: false,
             default: false,
         },
+
+        /**
+         * Isit readonly?
+         * 
+         * @type {Boolean}
+         */
+        readonly: {
+            required: false,
+            default: false,
+        }
     },
 
     methods: {

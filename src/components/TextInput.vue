@@ -3,6 +3,7 @@
         :value="value"
         :placeholder="placeholder"
         :name="name"
+        :readonly="readonly"
         input-type="input"
         @input="proxyInput"
     />
@@ -23,6 +24,7 @@ export default {
         value: { required: true },
         placeholder: { required: true },
         name: { required: true },
+        readonly: { required: false },
     },
 
     methods: {
